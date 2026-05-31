@@ -408,13 +408,6 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                     " mBinding = " + mBinding);
         }
 
-        AppOpsManager appOps = (AppOpsManager)mContext.getSystemService(Context.APP_OPS_SERVICE);
-        int callingUid = Binder.getCallingUid();
-        if (appOps.noteOp(AppOpsManager.OP_BLUETOOTH_CHANGE, callingUid, callingPackage) !=
-                AppOpsManager.MODE_ALLOWED) {
-            return false;
-        }
-
         synchronized(mReceiver) {
             mQuietEnableExternal = false;
             mEnableExternal = true;
